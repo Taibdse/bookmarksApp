@@ -70,7 +70,7 @@ class App extends React.Component {
               />
             </div>
           </div>
-          <div className="row mt-3">
+          <div className="row mt-3" style={{ marginBottom: '120px' }}>
             <div className="col-md-8 mx-auto">
               <BookMarks 
                 bookmarks={bookmarks}
