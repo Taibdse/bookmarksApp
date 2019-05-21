@@ -1,0 +1,57 @@
+.sidebar{
+    width: 300px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: 5;
+}
+
+.sidebar-closed{
+    left: -260px;
+}
+
+.sidebar .left-content{
+    height: 100vh;
+    overflow-y: auto;
+    width: 260px;
+    float: left;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.sidebar .right-content{
+    background-color: transparent;
+    height: 100vh;
+    width: 40px;
+    float: right;
+    position: relative;
+}
+
+.toggle-slide-in-out{
+    width: 40px;
+    height: 40px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 1.8em;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.toggle-slide-in-out i{
+    transition: all 0.3s ease-in-out;
+}
+
+.toggle-slide-in-out:hover i{
+    transform: rotate(90deg);
+    color: teal;
+}
+
+.book-icon{
+    font-size: 10em;
+    text-align: center;
+}
