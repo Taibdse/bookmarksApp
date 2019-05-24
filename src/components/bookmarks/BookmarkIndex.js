@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import FormBookMark from './FormBookMark';
 import BookMarks from './BookMarks';
 

@@ -18,6 +18,11 @@ class BookmarkService {
     static removeBookmark(id) {
         return db.bookmarks.delete(id);
     }
+
+    static async isTopicExisted(topicId){
+        const topic = await db.bookmarks.where('topic').equals(topicId).first();
+        return topic;
+    }
 }
 
 export default BookmarkService;
