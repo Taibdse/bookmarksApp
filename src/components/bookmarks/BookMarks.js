@@ -38,9 +38,9 @@ const BookMarks = (props) => {
     }
 
     const onChangeFilters = (e) => {
-        const filters = Object.assign({}, filters);
-        filters[e.target.name] = e.target.value;
-        setFilters(filters);
+        const newFilters = Object.assign({}, filters);
+        newFilters[e.target.name] = e.target.value;
+        setFilters(newFilters);
     } 
 
     const bookmarks = filterBookmarks(bookmarkContext.bookmarks);

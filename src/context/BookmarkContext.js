@@ -21,26 +21,26 @@ export const BookmarkProvider = (props) => {
     const addBookmark = async (bookmark) => {
         await BookmarkService.insertBookmark(bookmark);
         getBookmarks();
-        setBookmark({});
+        changeBookmark({});
         showSuccessMessage({ title: 'Insert successfully!' })
     }
     
     const updateBookmark = async (bookmark) => {
         await BookmarkService.updateBookmark(bookmark);
         getBookmarks();
-        setBookmark({});
+        changeBookmark({});
         showSuccessMessage({ title: 'Update successfully!' })
     }
     
-    const removeBookmark = async (bookmark) => {
-        await BookmarkService.removeBookmark(bookmark.id);
+    const removeBookmark = async (bm) => {
+        await BookmarkService.removeBookmark(bm.id);
         getBookmarks();
-        if(bookmark.id === this.state.bookmark.id) setBookmark({});
+        if(bm.id === bookmark.id) setBookmark({});
         showSuccessMessage({ title: 'Remove successfully!' })
     }
 
     const editBookmark = (bookmark) => {
-        setBookmark(bookmark);
+        changeBookmark(bookmark);
         setTimeout(() => {
             window.scrollTo(0, 0);
         }, 0);
