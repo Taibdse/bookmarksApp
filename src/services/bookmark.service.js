@@ -23,6 +23,10 @@ class BookmarkService {
         const topic = await db.bookmarks.where('topic').equals(topicId).first();
         return topic;
     }
+
+    static removeAllBookmarks = () => {
+        return db.bookmarks.where('id').aboveOrEqual(1).delete();
+    }
 }
 
 export default BookmarkService;

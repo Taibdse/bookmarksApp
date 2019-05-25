@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
-import { showConfirmMessage } from '../../utils/alert';
+import { showConfirmMessage, showSuccessMessage } from '../../utils/alert';
 import { isEmpty } from '../../utils/validate';
 import { BookmarkContext } from '../../context/BookmarkContext';
 import { TopicContext } from '../../context/TopicContext';
@@ -19,7 +19,13 @@ const BookMarks = (props) => {
             text: 'Once deleted, it will never be recovered!' 
         });
         if(confirm) {
-            bookmarkContext.removeBookmark(bookmark);
+            bookmarkContext.removeBookmark(bookmark)
+            .then(res => {
+                bookmarkContext.getBookmarks();
+                if(bookmark.id == bookmarkContext.bookmark.id) bookmarkContext.changeBookmark({});
+                showSuccessMessage({ title: 'Delete successfully' });
+            })
+            .catch(err => console.log(err));
         }
     }
 
@@ -42,6 +48,23 @@ const BookMarks = (props) => {
         newFilters[e.target.name] = e.target.value;
         setFilters(newFilters);
     } 
+
+    const removeAll = async (e) => {
+        e.preventDefault();
+        const confirm = await showConfirmMessage({ 
+            title: 'Are you sure?', 
+            text: 'Once deleted, it will never be recovered!' 
+        });
+        if(confirm){
+            bookmarkContext.removeAllBookmarks()
+            .then(res => {
+                bookmarkContext.getBookmarks();
+                bookmarkContext.changeBookmark({});
+                showSuccessMessage({ title: 'Delete all bookmarks successfully' });
+            })
+            .catch(err => console.log(err))
+        }
+    }
 
     const bookmarks = filterBookmarks(bookmarkContext.bookmarks);
 
@@ -85,7 +108,20 @@ const BookMarks = (props) => {
                             <th>Site</th>
                             <th>Link</th>
                             <th>Description</th>
-                            <th></th>
+                            <th>
+                                <Dropdown>
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                        ...
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item href="#" 
+                                            onClick={removeAll}>
+                                            Remove all
+                                        </Dropdown.Item> 
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>

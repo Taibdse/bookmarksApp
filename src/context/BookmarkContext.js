@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import BookmarkService from '../services/bookmark.service';
-import { showSuccessMessage } from '../utils/alert';
 import { isEmpty } from '../utils/validate';
 
 export const BookmarkContext = React.createContext();
@@ -19,24 +18,19 @@ export const BookmarkProvider = (props) => {
     }
 
     const addBookmark = async (bookmark) => {
-        await BookmarkService.insertBookmark(bookmark);
-        getBookmarks();
-        changeBookmark({});
-        showSuccessMessage({ title: 'Insert successfully!' })
+        return BookmarkService.insertBookmark(bookmark);
     }
     
     const updateBookmark = async (bookmark) => {
-        await BookmarkService.updateBookmark(bookmark);
-        getBookmarks();
-        changeBookmark({});
-        showSuccessMessage({ title: 'Update successfully!' })
+        return BookmarkService.updateBookmark(bookmark);
     }
     
     const removeBookmark = async (bm) => {
-        await BookmarkService.removeBookmark(bm.id);
-        getBookmarks();
-        if(bm.id === bookmark.id) setBookmark({});
-        showSuccessMessage({ title: 'Remove successfully!' })
+        return BookmarkService.removeBookmark(bm.id);
+    }
+
+    const removeAllBookmarks = () => {
+        return BookmarkService.removeAllBookmarks()
     }
 
     const editBookmark = (bookmark) => {
@@ -54,7 +48,15 @@ export const BookmarkProvider = (props) => {
     }
 
     const state = { bookmarks, bookmark };
-    const methods = { getBookmarks, editBookmark, changeBookmark, updateBookmark, removeBookmark, addBookmark };
+    const methods = { 
+        getBookmarks, 
+        editBookmark, 
+        changeBookmark, 
+        updateBookmark, 
+        removeBookmark, 
+        addBookmark, 
+        removeAllBookmarks 
+    };
 
     return (
         <BookmarkContext.Provider value={{

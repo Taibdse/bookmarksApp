@@ -6,15 +6,16 @@ const BookmarkIndex = () => {
     return (
         <div className="container">
             <div className="row mt-3">
-              <div className="col-md-6 mx-auto">
+              <div className="col-md-4 ">
                 <FormBookMark />
               </div>
-            </div>
-            <div className="row mt-3" style={{ marginBottom: '120px' }}>
-              <div className="col-md-8 mx-auto">
+              <div className="col-md-8 ">
                 <BookMarks />
               </div>
             </div>
+            {/* <div className="row mt-3" style={{ marginBottom: '120px' }}>
+              
+            </div> */}
         </div>
     );
 };
