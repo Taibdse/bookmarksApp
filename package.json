@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
-    "dexie": "^2.0.4",
+    "dexie": "^3.2.2",
     "faker": "^4.1.0",
     "jquery": "^3.4.1",
     "react": "^16.8.6",
